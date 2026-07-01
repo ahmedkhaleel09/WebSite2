@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pizzeria Napoli — Premium Handcrafted Pizza</title>
+  <meta name="description" content="Pizzeria Napoli - Premium handcrafted pizza made with the finest ingredients. Order online for fast delivery.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Edit Mode Toggle -->
+  <button id="edit-mode-toggle" class="edit-mode-toggle" aria-label="Toggle Edit Mode" title="Edit Mode">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+    </svg>
+  </button>
+
+  <!-- Password Modal -->
+  <div id="password-modal" class="modal-overlay" style="display:none;" role="dialog" aria-modal="true" aria-label="Edit mode password">
+    <div class="modal-card">
+      <h3>Enter Admin Password</h3>
+      <p>Enter the password to access Edit Mode.</p>
+      <input type="password" id="password-input" placeholder="Password (leave blank if none set)" aria-label="Admin password">
+      <div class="modal-actions">
+        <button id="password-submit" class="btn btn-primary">Enter</button>
+        <button id="password-cancel" class="btn btn-secondary">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav id="navbar" class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-container">
+      <a href="#home" class="nav-logo" aria-label="Home">
+        <svg class="logo-icon" width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+          <circle cx="20" cy="20" r="18" fill="var(--primary)" stroke="var(--primary-dark)" stroke-width="2"/>
+          <path d="M20 6C12.268 6 6 12.268 6 20s6.268 14 14 14 14-6.268 14-14S27.732 6 20 6zm0 2c2.5 0 4.8.7 6.8 1.9L20 20V8zm-2 12l6.8-8.1A11.9 11.9 0 0 1 32 20c0 2.5-.7 4.8-1.9 6.8L20 20h-2zm2 2l10.1-6.8A11.9 11.9 0 0 1 32 20c0 2.5-.7 4.8-1.9 6.8L20 22zm0 2l10.1 6.8A11.9 11.9 0 0 1 8 20c0-2.5.7-4.8 1.9-6.8L20 22v2zm-2-2l-8.1-10.1A11.9 11.9 0 0 1 8 20c0 2.5.7 4.8 1.9 6.8L20 20h-2zm-2 2l-8.1 6.8A11.9 11.9 0 0 1 8 20c0-2.5.7-4.8 1.9-6.8L18 20v2zm0-4l-8.1-10.1A11.9 11.9 0 0 1 20 8v10h-2z" fill="var(--white)"/>
+          <circle cx="15" cy="17" r="2" fill="#E67E22"/>
+          <circle cx="25" cy="15" r="1.5" fill="#E67E22"/>
+          <circle cx="20" cy="24" r="2" fill="#E67E22"/>
+          <circle cx="14" cy="23" r="1" fill="#D4A574"/>
+          <circle cx="26" cy="22" r="1.5" fill="#D4A574"/>
+          <circle cx="22" cy="13" r="1" fill="#D4A574"/>
+        </svg>
+        <span class="logo-text">Pizzeria Napoli</span>
+      </a>
+      <ul class="nav-links" id="nav-links" role="menubar">
+        <li role="none"><a href="#home" class="nav-link active" role="menuitem">Home</a></li>
+        <li role="none"><a href="#about" class="nav-link" role="menuitem">About</a></li>
+        <li role="none"><a href="#menu" class="nav-link" role="menuitem">Menu</a></li>
+        <li role="none"><a href="#reviews" class="nav-link" role="menuitem">Reviews</a></li>
+        <li role="none"><a href="#contact" class="nav-link" role="menuitem">Contact</a></li>
+      </ul>
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-links">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero" aria-label="Hero">
+    <div class="hero-bg-shapes" aria-hidden="true">
+      <div class="hero-circle hero-circle-1"></div>
+      <div class="hero-circle hero-circle-2"></div>
+      <div class="hero-circle hero-circle-3"></div>
+    </div>
+    <div class="hero-container">
+      <div class="hero-content">
+        <p class="hero-badge">🍕 Welcome to Pizzeria Napoli</p>
+        <h1 class="hero-title">Crafted with Passion,<br>Served with Love</h1>
+        <p class="hero-subtitle">Experience authentic Italian pizza made from the freshest ingredients, baked to perfection in our traditional wood-fired oven. Every slice tells a story.</p>
+        <div class="hero-buttons">
+          <a href="#menu" class="btn btn-primary btn-lg">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+            Order Now
+          </a>
+          <a href="#menu" class="btn btn-outline btn-lg">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+            View Menu
+          </a>
+        </div>
+      </div>
+      <div class="hero-image-wrap">
+        <div class="hero-image-bg"></div>
+        <img id="hero-image" class="hero-image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='500' viewBox='0 0 500 500'%3E%3Cdefs%3E%3CradialGradient id='g' cx='50%25' cy='50%25' r='50%25'%3E%3Cstop offset='0%25' stop-color='%23F5E6D3'/%3E%3Cstop offset='100%25' stop-color='%23E67E22'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='250' cy='250' r='240' fill='url(%23g)'/%3E%3Ccircle cx='250' cy='250' r='220' fill='%23FFF8F0'/%3E%3Ccircle cx='250' cy='250' r='200' fill='%23E67E22'/%3E%3Ccircle cx='250' cy='250' r='180' fill='%23D4A050'/%3E%3Cellipse cx='200' cy='200' rx='35' ry='30' fill='%23B22222' opacity='0.8'/%3E%3Cellipse cx='300' cy='180' rx='25' ry='20' fill='%23B22222' opacity='0.8'/%3E%3Cellipse cx='250' cy='300' rx='30' ry='25' fill='%23B22222' opacity='0.8'/%3E%3Cellipse cx='180' cy='280' rx='20' ry='18' fill='%23B22222' opacity='0.8'/%3E%3Cellipse cx='320' cy='270' rx='22' ry='18' fill='%23B22222' opacity='0.8'/%3E%3Ccircle cx='210' cy='230' r='8' fill='%232D5016' opacity='0.7'/%3E%3Ccircle cx='290' cy='240' r='6' fill='%232D5016' opacity='0.7'/%3E%3Ccircle cx='240' cy='280' r='7' fill='%232D5016' opacity='0.7'/%3E%3Ccircle cx='260' cy='190' r='5' fill='%232D5016' opacity='0.7'/%3E%3Ccircle cx='220' cy='310' r='6' fill='%232D5016' opacity='0.7'/%3E%3Ccircle cx='280' cy='220' r='4' fill='%23F4D03F' opacity='0.6'/%3E%3Ccircle cx='230' cy='260' r='3' fill='%23F4D03F' opacity='0.6'/%3E%3Ccircle cx='310' cy='300' r='4' fill='%23F4D03F' opacity='0.6'/%3E%3C/svg%3E" alt="Delicious pizza" width="500" height="500">
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="section about" aria-label="About us">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Our Story</span>
+        <h2 class="section-title">About Pizzeria Napoli</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+      </div>
+      <div class="about-grid">
+        <div class="about-story">
+          <p id="about-text">Founded in 2010, Pizzeria Napoli was born from a deep love for authentic Italian cuisine. Our founder traveled across Italy, learning traditional recipes from master pizzaiolos in Naples, Rome, and Florence. Today, we bring those authentic flavors to your table with every pizza we craft.</p>
+          <p>We believe that great pizza starts with great ingredients. That's why we source our tomatoes from San Marzano, our mozzarella from local dairies, and our flour from artisan mills. Every pizza is hand-stretched and baked to perfection in our 900°F wood-fired oven.</p>
+        </div>
+        <div class="about-features">
+          <div class="about-feature">
+            <div class="about-feature-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+            </div>
+            <h3>Quality Ingredients</h3>
+            <p>Fresh, locally-sourced ingredients for authentic flavor</p>
+          </div>
+          <div class="about-feature">
+            <div class="about-feature-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            </div>
+            <h3>Fresh Dough</h3>
+            <p>Made daily and slow-fermented for 48 hours</p>
+          </div>
+          <div class="about-feature">
+            <div class="about-feature-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+            </div>
+            <h3>Wood-Fired</h3>
+            <p>Traditional 900°F oven for the perfect crust</p>
+          </div>
+          <div class="about-feature">
+            <div class="about-feature-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <h3>Fast Delivery</h3>
+            <p>Hot and fresh to your door in 30 minutes</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Pizzas -->
+  <section id="featured" class="section featured" aria-label="Featured pizzas">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Top Picks</span>
+        <h2 class="section-title">Featured Pizzas</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+      </div>
+      <div id="featured-grid" class="featured-grid">
+        <!-- Dynamically rendered -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Full Menu -->
+  <section id="menu" class="section menu-section" aria-label="Full menu">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Our Menu</span>
+        <h2 class="section-title">Explore Our Menu</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+      </div>
+      <div id="menu-categories" class="menu-categories" role="tablist" aria-label="Menu categories">
+        <!-- Dynamically rendered -->
+      </div>
+      <div id="menu-grid" class="menu-grid">
+        <!-- Dynamically rendered -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section id="why" class="section why-section" aria-label="Why choose us">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Why Us</span>
+        <h2 class="section-title">Why Choose Us</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+      </div>
+      <div id="why-grid" class="why-grid">
+        <!-- Dynamically rendered -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Special Offers -->
+  <section id="specials" class="section specials" aria-label="Special offers">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Deals</span>
+        <h2 class="section-title">Special Offers</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+      </div>
+      <div class="specials-grid">
+        <div class="special-card special-card-1">
+          <div class="special-badge">20% OFF</div>
+          <h3>Family Combo</h3>
+          <p>2 Large Pizzas + Garlic Bread + 2L Drink</p>
+          <span class="special-price"><del>$49.99</del> <strong>$39.99</strong></span>
+        </div>
+        <div class="special-card special-card-2">
+          <div class="special-badge">Buy 1 Get 1</div>
+          <h3>Lunch Special</h3>
+          <p>Buy any large pizza and get a medium free. Mon-Fri, 11am-3pm.</p>
+          <span class="special-price"><strong>From $12.99</strong></span>
+        </div>
+        <div class="special-card special-card-3">
+          <div class="special-badge">FREE</div>
+          <h3>Free Delivery</h3>
+          <p>Free delivery on orders over $30. Use code FREEDEL at checkout.</p>
+          <span class="special-price"><strong>Over $30</strong></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery" class="section gallery-section" aria-label="Photo gallery">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Gallery</span>
+        <h2 class="section-title">Our Gallery</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+      </div>
+      <div id="gallery-grid" class="gallery-grid">
+        <!-- Dynamically rendered -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews -->
+  <section id="reviews" class="section reviews-section" aria-label="Customer reviews">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Testimonials</span>
+        <h2 class="section-title">What Our Customers Say</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+      </div>
+      <div class="reviews-slider">
+        <div id="reviews-track" class="reviews-track">
+          <!-- Dynamically rendered -->
+        </div>
+        <div class="reviews-controls">
+          <button id="review-prev" class="review-btn" aria-label="Previous review">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <div id="review-dots" class="review-dots" role="tablist" aria-label="Review navigation">
+            <!-- Dynamically rendered -->
+          </div>
+          <button id="review-next" class="review-btn" aria-label="Next review">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="section contact-section" aria-label="Contact us">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Get in Touch</span>
+        <h2 class="section-title">Contact Us</h2>
+        <div class="section-divider" aria-hidden="true"></div>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <h4>Address</h4>
+              <p id="contact-address">123 Main Street, Downtown, NY 10001</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div>
+              <h4>Phone</h4>
+              <p id="contact-phone">(555) 123-4567</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <h4>Email</h4>
+              <p id="contact-email">info@pizzerianapoli.com</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div>
+              <h4>Opening Hours</h4>
+              <p id="contact-hours">Mon-Sun: 11:00 AM - 11:00 PM</p>
+            </div>
+          </div>
+        </div>
+        <form id="contact-form" class="contact-form" novalidate>
+          <div class="form-group">
+            <label for="contact-name">Name *</label>
+            <input type="text" id="contact-name" name="name" required autocomplete="name" placeholder="Your name">
+            <span class="form-error" id="name-error"></span>
+          </div>
+          <div class="form-group">
+            <label for="contact-email-input">Email *</label>
+            <input type="email" id="contact-email-input" name="email" required autocomplete="email" placeholder="your@email.com">
+            <span class="form-error" id="email-error"></span>
+          </div>
+          <div class="form-group">
+            <label for="contact-message">Message *</label>
+            <textarea id="contact-message" name="message" rows="5" required placeholder="Your message..."></textarea>
+            <span class="form-error" id="message-error"></span>
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg btn-full">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            Send Message
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#home" class="nav-logo" aria-label="Home">
+            <svg class="logo-icon" width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+              <circle cx="20" cy="20" r="18" fill="var(--primary)" stroke="var(--primary-dark)" stroke-width="2"/>
+              <circle cx="15" cy="17" r="2" fill="#E67E22"/>
+              <circle cx="25" cy="15" r="1.5" fill="#E67E22"/>
+              <circle cx="20" cy="24" r="2" fill="#E67E22"/>
+            </svg>
+            <span class="logo-text">Pizzeria Napoli</span>
+          </a>
+          <p id="footer-text">Crafting authentic Italian pizza with passion since 2010. Every slice tells our story of tradition, quality, and love for great food.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-social">
+          <h4>Follow Us</h4>
+          <div class="social-links">
+            <a href="#" class="social-link" aria-label="Facebook">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="#" class="social-link" aria-label="Instagram">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="#" class="social-link" aria-label="Twitter">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+            </a>
+            <a href="#" class="social-link" aria-label="TikTok">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 0 0-.79-.05A6.34 6.34 0 0 0 3.15 15a6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.74a8.16 8.16 0 0 0 4.76 1.52V6.81a4.85 4.85 0 0 1-1-.12z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; <span id="current-year"></span> Pizzeria Napoli. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Admin Panel Overlay -->
+  <div id="admin-panel" class="admin-panel" style="display:none;" role="dialog" aria-modal="true" aria-label="Admin panel">
+    <div class="admin-sidebar">
+      <div class="admin-sidebar-header">
+        <h2>Edit Mode</h2>
+        <button id="admin-close" class="admin-close" aria-label="Close admin panel">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <nav class="admin-nav" role="tablist" aria-label="Admin sections">
+        <button class="admin-tab active" data-tab="site-info" role="tab" aria-selected="true" aria-controls="tab-site-info">Site Info</button>
+        <button class="admin-tab" data-tab="menu-mgr" role="tab" aria-selected="false" aria-controls="tab-menu-mgr">Menu Manager</button>
+        <button class="admin-tab" data-tab="categories" role="tab" aria-selected="false" aria-controls="tab-categories">Categories</button>
+        <button class="admin-tab" data-tab="gallery-mgr" role="tab" aria-selected="false" aria-controls="tab-gallery-mgr">Gallery</button>
+        <button class="admin-tab" data-tab="reviews-mgr" role="tab" aria-selected="false" aria-controls="tab-reviews-mgr">Reviews</button>
+        <button class="admin-tab" data-tab="theme" role="tab" aria-selected="false" aria-controls="tab-theme">Theme</button>
+        <button class="admin-tab" data-tab="settings" role="tab" aria-selected="false" aria-controls="tab-settings">Settings</button>
+      </nav>
+    </div>
+    <div class="admin-main">
+      <!-- Site Info Tab -->
+      <div id="tab-site-info" class="admin-tab-content active" role="tabpanel">
+        <h3>Site Information</h3>
+        <div class="form-group">
+          <label for="edit-restaurant-name">Restaurant Name</label>
+          <input type="text" id="edit-restaurant-name">
+        </div>
+        <div class="form-group">
+          <label for="edit-logo">Logo Image</label>
+          <input type="file" id="edit-logo" accept="image/*" class="file-input">
+          <div id="edit-logo-preview" class="img-preview"></div>
+        </div>
+        <div class="form-group">
+          <label for="edit-hero-image">Hero Image</label>
+          <input type="file" id="edit-hero-image" accept="image/*" class="file-input">
+          <div id="edit-hero-image-preview" class="img-preview"></div>
+        </div>
+        <div class="form-group">
+          <label for="edit-hero-title">Hero Title</label>
+          <input type="text" id="edit-hero-title">
+        </div>
+        <div class="form-group">
+          <label for="edit-hero-subtitle">Hero Subtitle</label>
+          <textarea id="edit-hero-subtitle" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="edit-about-text">About Text</label>
+          <textarea id="edit-about-text" rows="5"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="edit-footer-text">Footer Text</label>
+          <textarea id="edit-footer-text" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="edit-address">Address</label>
+          <input type="text" id="edit-address">
+        </div>
+        <div class="form-group">
+          <label for="edit-phone">Phone</label>
+          <input type="text" id="edit-phone">
+        </div>
+        <div class="form-group">
+          <label for="edit-email">Email</label>
+          <input type="email" id="edit-email">
+        </div>
+        <div class="form-group">
+          <label for="edit-hours">Opening Hours</label>
+          <input type="text" id="edit-hours">
+        </div>
+        <div class="form-group">
+          <label for="edit-nav-password">Admin Password (leave blank for none)</label>
+          <input type="password" id="edit-nav-password" placeholder="Optional password">
+        </div>
+        <button id="save-site-info" class="btn btn-primary btn-full">Save Changes</button>
+      </div>
+
+      <!-- Menu Manager Tab -->
+      <div id="tab-menu-mgr" class="admin-tab-content" role="tabpanel">
+        <div class="admin-tab-header">
+          <h3>Menu Items</h3>
+          <button id="add-pizza-btn" class="btn btn-primary btn-sm">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Add Pizza
+          </button>
+        </div>
+        <div id="menu-items-list" class="admin-list">
+          <!-- Dynamically rendered -->
+        </div>
+      </div>
+
+      <!-- Categories Tab -->
+      <div id="tab-categories" class="admin-tab-content" role="tabpanel">
+        <div class="admin-tab-header">
+          <h3>Categories</h3>
+          <button id="add-category-btn" class="btn btn-primary btn-sm">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Add Category
+          </button>
+        </div>
+        <div id="categories-list" class="admin-list">
+          <!-- Dynamically rendered -->
+        </div>
+      </div>
+
+      <!-- Gallery Manager Tab -->
+      <div id="tab-gallery-mgr" class="admin-tab-content" role="tabpanel">
+        <div class="admin-tab-header">
+          <h3>Gallery Images</h3>
+          <button id="add-gallery-btn" class="btn btn-primary btn-sm">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Add Image
+          </button>
+        </div>
+        <input type="file" id="gallery-file-input" accept="image/*" multiple style="display:none">
+        <div id="gallery-list" class="admin-gallery-list">
+          <!-- Dynamically rendered -->
+        </div>
+      </div>
+
+      <!-- Reviews Manager Tab -->
+      <div id="tab-reviews-mgr" class="admin-tab-content" role="tabpanel">
+        <div class="admin-tab-header">
+          <h3>Reviews</h3>
+          <button id="add-review-btn" class="btn btn-primary btn-sm">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Add Review
+          </button>
+        </div>
+        <div id="reviews-list" class="admin-list">
+          <!-- Dynamically rendered -->
+        </div>
+      </div>
+
+      <!-- Theme Tab -->
+      <div id="tab-theme" class="admin-tab-content" role="tabpanel">
+        <h3>Theme Customization</h3>
+        <div class="theme-grid">
+          <div class="form-group">
+            <label for="theme-primary">Primary Color</label>
+            <div class="color-input-wrap">
+              <input type="color" id="theme-primary" value="#B22222">
+              <span id="theme-primary-val">#B22222</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="theme-secondary">Secondary Color</label>
+            <div class="color-input-wrap">
+              <input type="color" id="theme-secondary" value="#E67E22">
+              <span id="theme-secondary-val">#E67E22</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="theme-bg">Background Color</label>
+            <div class="color-input-wrap">
+              <input type="color" id="theme-bg" value="#FFF8F0">
+              <span id="theme-bg-val">#FFF8F0</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="theme-text">Text Color</label>
+            <div class="color-input-wrap">
+              <input type="color" id="theme-text" value="#222222">
+              <span id="theme-text-val">#222222</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="theme-btn-color">Button Color</label>
+            <div class="color-input-wrap">
+              <input type="color" id="theme-btn-color" value="#B22222">
+              <span id="theme-btn-color-val">#B22222</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="theme-font">Font Family</label>
+            <select id="theme-font">
+              <option value="'Poppins', sans-serif">Poppins</option>
+              <option value="'Inter', sans-serif">Inter</option>
+              <option value="'Manrope', sans-serif">Manrope</option>
+              <option value="'Playfair Display', serif">Playfair Display</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="theme-radius">Border Radius: <span id="theme-radius-val">12</span>px</label>
+            <input type="range" id="theme-radius" min="0" max="30" value="12">
+          </div>
+        </div>
+        <button id="save-theme" class="btn btn-primary btn-full">Save Theme</button>
+      </div>
+
+      <!-- Settings Tab -->
+      <div id="tab-settings" class="admin-tab-content" role="tabpanel">
+        <h3>Import / Export / Reset</h3>
+        <p class="admin-note">Export your website data as a JSON file, import a backup, or reset to default content.</p>
+        <div class="settings-buttons">
+          <button id="export-data" class="btn btn-primary btn-full">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Export Data (JSON)
+          </button>
+          <button id="import-data-btn" class="btn btn-secondary btn-full">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            Import Data (JSON)
+          </button>
+          <input type="file" id="import-data-file" accept=".json" style="display:none">
+          <button id="reset-data" class="btn btn-danger btn-full">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+            Reset to Defaults
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pizza Edit Modal -->
+  <div id="pizza-modal" class="modal-overlay" style="display:none;" role="dialog" aria-modal="true" aria-label="Edit pizza">
+    <div class="modal-card modal-lg">
+      <div class="modal-header">
+        <h3 id="pizza-modal-title">Add Pizza</h3>
+        <button id="pizza-modal-close" class="admin-close" aria-label="Close">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="pizza-edit-id">
+        <div class="form-group">
+          <label for="pizza-name">Pizza Name *</label>
+          <input type="text" id="pizza-name" required>
+        </div>
+        <div class="form-group">
+          <label for="pizza-desc">Description</label>
+          <textarea id="pizza-desc" rows="2"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="pizza-ingredients">Ingredients (comma-separated)</label>
+          <input type="text" id="pizza-ingredients" placeholder="e.g. Mozzarella, Tomato, Basil">
+        </div>
+        <div class="form-group">
+          <label for="pizza-category">Category *</label>
+          <select id="pizza-category">
+            <!-- Dynamically rendered -->
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="pizza-price">Price ($) *</label>
+          <input type="number" id="pizza-price" step="0.01" min="0">
+        </div>
+        <div class="form-group">
+          <label for="pizza-image">Image</label>
+          <input type="file" id="pizza-image" accept="image/*" class="file-input">
+          <div id="pizza-image-preview" class="img-preview"></div>
+        </div>
+        <div class="form-row">
+          <label class="checkbox-label">
+            <input type="checkbox" id="pizza-featured"> Featured
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="pizza-available" checked> Available
+          </label>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button id="pizza-save" class="btn btn-primary">Save Pizza</button>
+        <button id="pizza-cancel" class="btn btn-secondary">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Review Edit Modal -->
+  <div id="review-modal" class="modal-overlay" style="display:none;" role="dialog" aria-modal="true" aria-label="Edit review">
+    <div class="modal-card modal-lg">
+      <div class="modal-header">
+        <h3 id="review-modal-title">Add Review</h3>
+        <button id="review-modal-close" class="admin-close" aria-label="Close">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="review-edit-id">
+        <div class="form-group">
+          <label for="review-customer-name">Customer Name *</label>
+          <input type="text" id="review-customer-name" required>
+        </div>
+        <div class="form-group">
+          <label for="review-customer-photo">Customer Photo</label>
+          <input type="file" id="review-customer-photo" accept="image/*" class="file-input">
+          <div id="review-photo-preview" class="img-preview"></div>
+        </div>
+        <div class="form-group">
+          <label for="review-rating">Rating (1-5) *</label>
+          <select id="review-rating">
+            <option value="5">5 Stars</option>
+            <option value="4">4 Stars</option>
+            <option value="3">3 Stars</option>
+            <option value="2">2 Stars</option>
+            <option value="1">1 Star</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="review-text">Review Text *</label>
+          <textarea id="review-text" rows="4"></textarea>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button id="review-save" class="btn btn-primary">Save Review</button>
+        <button id="review-cancel" class="btn btn-secondary">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Category Edit Modal -->
+  <div id="category-modal" class="modal-overlay" style="display:none;" role="dialog" aria-modal="true" aria-label="Edit category">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="category-modal-title">Add Category</h3>
+        <button id="category-modal-close" class="admin-close" aria-label="Close">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="category-edit-id">
+        <div class="form-group">
+          <label for="category-name">Category Name *</label>
+          <input type="text" id="category-name" required>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button id="category-save" class="btn btn-primary">Save Category</button>
+        <button id="category-cancel" class="btn btn-secondary">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast" role="alert" aria-live="polite" style="display:none;"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
